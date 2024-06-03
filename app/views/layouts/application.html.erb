@@ -6,11 +6,25 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+        crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <div class="background-icons">
+      <i class="icon rotate gas fas fa-star" style="<%= "top: 5%; left: 5%" %>"></i>
+      <i class="icon rotate fas fa-star" style="<%= "bottom: 5%; left: 5%" %>"></i>
+      <i class="icon rotate fas fa-star" style="<%= "top: 5%; right: 5%" %>"></i>
+      <i class="icon rotate fas fa-star" style="<%= "bottom: 5%; right: 5%" %>"></i>
+    </div>
     <%= yield %>
+    <div id="footer" onclick="$(this).hide();">
+      Made with ❤️ by <a href="https://github.com/inteam-eu-org/chocolo">Chocorean</a> for the Inteam
+    </div>
   </body>
 </html>
