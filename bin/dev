@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# bin/dev
+
+# Ensure the script exits if any command fails
+set -e
+
+# Print a warning message (if desired)
+echo "Starting the development environment..."
+
+# Run foreman
+if ! command -v foreman &> /dev/null
+then
+  gem install foreman
+fi
+
+foreman start -f Procfile.dev
