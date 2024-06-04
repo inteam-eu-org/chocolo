@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.cdnfonts.com/css/sugarpunch-demo" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script
@@ -16,6 +17,14 @@
   </head>
 
   <body>
+    <div id="force-landscape">
+      <div id="refresh-arrows">
+        <div class="refresh-arrows-wrapper">
+          <div class="slow-spin"><i class="fa-solid fa-arrows-rotate"></i></div>
+        </div>
+        <p>Please rotate your device !</p>
+      </div>
+    </div>
     <div class="background-icons">
       <i class="icon rotate gas fas fa-star" style="<%= "top: 5%; left: 5%" %>"></i>
       <i class="icon rotate fas fa-star" style="<%= "bottom: 5%; left: 5%" %>"></i>
@@ -24,7 +33,7 @@
     </div>
     <%= yield %>
     <div id="footer" onclick="$(this).hide();">
-      Made with ❤️ by <a href="https://github.com/inteam-eu-org/chocolo">Chocorean</a> for the Inteam
+      Made with ❤️ by <a href="https://github.com/inteam-eu-org/chocolo">Chocorean</a> for l'Inteam.
     </div>
   </body>
 </html>

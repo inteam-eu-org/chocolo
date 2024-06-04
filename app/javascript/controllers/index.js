@@ -9,3 +9,10 @@ eagerLoadControllersFrom("controllers", application)
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
+
+window.startGame = function startGame() {
+  $('#theme').hide();
+  $('#form').hide();
+  $('#start').hide();
+  $('#game').css('display', 'block');
+}

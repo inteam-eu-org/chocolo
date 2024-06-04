@@ -1,0 +1,37 @@
+<div class="container">
+  <div id="title">
+    <h1>CHOCOLO</h1>
+  </div>
+  <div id="theme">
+    <h2>What theme are we playing with today?</h2>
+    <label onclick="$(this).children[0].click()">
+      <select id="theme-select" onchange="loadQuestions(this)">
+        <option value="1">InTeam Specials <i class="fa-solid fa-angle-down"></i></option>
+        <option value="2" disabled>Dumb mode</option>
+        <option value="3" disabled>Deadbool confirmed</option>
+        <option value="4" disabled>Who is Captain InTeam?</option>
+        <option value="5" disabled>...</option>
+      </select>
+      <i class="fa-solid fa-angle-down"></i>
+    </label>
+  </div>
+  <div id="form">
+    <h2>Who is playing today?</h2><br />
+    <div id="form-grid">
+      <input type="text" class="grid-item" value="Paul" />
+      <input type="text" class="grid-item" value="Louise" />
+      <input type="text" class="grid-item" value="Manon" />
+      <input type="text" class="grid-item" value="Yande" />
+      <input type="text" class="grid-item" value="Darko" />
+      <input type="text" class="grid-item" value="Cedo" />
+      <input type="text" class="grid-item" value="Nico" />
+      <% 3.times do %>
+        <input type="text" class="grid-item" />
+        <% end %>
+    </div>
+  </div>
+  <button id="start" onclick="startGame()">Start the Game</button>
+  <div id="game">
+    <div id="question">Bois 5 gorgees si tu as deja menti pour sauver un pote. pas bien!! ou bien..?</div>
+  </div>
+</div>
