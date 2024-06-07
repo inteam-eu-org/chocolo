@@ -10,6 +10,8 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
+let questions = []
+
 window.initGame = function () {
   // Display loader
   $('#loader').show();
@@ -24,7 +26,8 @@ window.initGame = function () {
       if (data["status"] === "error") {
         alert(data["message"]);
       } else if (data["status"] === "success") {
-        startGame(data["questions"]);
+        questions = data["questions"];
+        startGame();
       } else {
         alert('An error occurred while trying to fetch the questions');
       }
@@ -43,4 +46,20 @@ window.startGame = function () {
   $('#start').hide();
   // Shows the game
   $('#game').css('display', 'block');
+  updateGame();
+}
+
+window.updateGame = function () {
+  // If ran out of questions, finish the game!
+  if (questions.length === 0) {
+    finishGame();
+    return;
+  }
+  // Display the next question
+  $('#question').text(questions.shift());
+}
+
+window.finishGame = function () {
+  $('#game').hide();
+  $('#end').css('display', 'block');
 }

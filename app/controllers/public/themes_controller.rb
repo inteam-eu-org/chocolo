@@ -12,7 +12,7 @@ class Public::ThemesController < ApplicationController
     else
       render json: {
         "status": "success",
-        "questions": @theme.questions.map(&:properties)
+        "questions": @theme.questions.map(&:build)
       }
     end
   end

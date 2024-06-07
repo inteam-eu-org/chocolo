@@ -29,7 +29,10 @@
     </div>
   </div>
   <button id="start" onclick="initGame()">Start the Game</button>
-  <div id="game">
-    <div id="question">Bois 5 gorgees si tu as deja menti pour sauver un pote. pas bien!! ou bien..?</div>
+  <div id="game" onclick="updateGame()">
+    <div id="question"></div>
+  </div>
+  <div id="end" onclick="$(this).hide(); $('#theme').show(); $('#form').show(); $('#start').show();">
+    <h2>Thanks for playing!</h2>
   </div>
 </div>

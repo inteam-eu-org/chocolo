@@ -23,6 +23,8 @@ bin/rails db:create db:migrate db:seed
 bin/dev
 ```
 
+You can select the `Gameloop test` theme to test the loop. [Update the theme](./db/seeds/inteam.rb) as long as you had new question types or features so this theme shows all possible behaviors of the app.
+
 **N.B.:** You can connect to the dev server using your phone to see if the app renders properly. Look into the server logs:
 
 ```bash
