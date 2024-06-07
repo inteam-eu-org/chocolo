@@ -14,9 +14,14 @@ It has no specific deps other than a few gems:
 
 `bundle i`
 
-### Run
+### Setup & Run
 
-`bin/dev`
+The database is a SQLite3 file, it's more than enough.
+
+```
+bin/rails db:create db:migrate db:seed
+bin/dev
+```
 
 **N.B.:** You can connect to the dev server using your phone to see if the app renders properly. Look into the server logs:
 
@@ -40,15 +45,22 @@ Puma starting in single mode...
 Use Ctrl-C to stop
 ```
 
+## Questions specs
+
+Look at `./config/schemas/question.json` to change the specification of the questions.
+
+## Testing
+
+Not much to see here, eventually coverage and more will be added.
+
+```
+rails test
+```
+
 ## To cover in the future
 
+* Formatting
 * Configuration
-
-* Database creation
-
-* How to run the test suite
-
 * Services (job queues, cache servers, search engines, etc.)
-
 * Deployment instructions
 

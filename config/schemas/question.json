@@ -1,0 +1,33 @@
+{
+  "title": "Product",
+  "description": "A Chocolo question, challenge, anything.",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": [
+        "simple",
+        "effect"
+      ]
+    },
+    "primaryText": {
+      "type": "string"
+    },
+    "secondaryText": {
+      "type": "string"
+    },
+    "turns": {
+      "type": "integer"
+    },
+    "protagonists": {
+      "type": "integer"
+    },
+    "sips": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "kind",
+    "primaryText"
+  ]
+}

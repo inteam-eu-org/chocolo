@@ -4,13 +4,11 @@
   </div>
   <div id="theme">
     <h2>What theme are we playing with today?</h2>
-    <label onclick="$(this).children[0].click()">
-      <select id="theme-select" onchange="loadQuestions(this)">
-        <option value="1">InTeam Specials <i class="fa-solid fa-angle-down"></i></option>
-        <option value="2" disabled>Dumb mode</option>
-        <option value="3" disabled>Deadbool confirmed</option>
-        <option value="4" disabled>Who is Captain InTeam?</option>
-        <option value="5" disabled>...</option>
+    <label onclick="$(this).children()[0].click()">
+      <select id="theme-select">
+        <% @themes.each do |theme| %>
+          <option value="<%= theme.id %>"><%= theme.name %></option>
+        <% end %>
       </select>
       <i class="fa-solid fa-angle-down"></i>
     </label>
@@ -30,7 +28,7 @@
         <% end %>
     </div>
   </div>
-  <button id="start" onclick="startGame()">Start the Game</button>
+  <button id="start" onclick="initGame()">Start the Game</button>
   <div id="game">
     <div id="question">Bois 5 gorgees si tu as deja menti pour sauver un pote. pas bien!! ou bien..?</div>
   </div>

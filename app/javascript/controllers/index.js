@@ -10,9 +10,37 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-window.startGame = function startGame() {
+window.initGame = function () {
+  // Display loader
+  $('#loader').show();
+  // Query the questions for the game
+  const theme_id = $('#theme-select').find(":selected").val();
+  $.ajax({
+    url: '/themes/' + theme_id,
+    dataType: "json",
+    type: 'GET',
+    success: function (data) {
+      $('#loader').hide();
+      if (data["status"] === "error") {
+        alert(data["message"]);
+      } else if (data["status"] === "success") {
+        startGame(data["questions"]);
+      } else {
+        alert('An error occurred while trying to fetch the questions');
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      $('#loader').hide();
+      alert(textStatus + "\nError: " + errorThrown);
+    }
+  });
+}
+
+window.startGame = function () {
+  // Hide the UI
   $('#theme').hide();
   $('#form').hide();
   $('#start').hide();
+  // Shows the game
   $('#game').css('display', 'block');
 }

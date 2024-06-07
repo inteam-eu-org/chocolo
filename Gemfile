@@ -67,3 +67,5 @@ group :test do
 end
 
 gem "sass-rails", "~> 6.0"
+
+gem "json-schema", "~> 4.3"
