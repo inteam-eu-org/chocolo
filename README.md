@@ -1,6 +1,6 @@
 # CHOCOLO
 
-Bootleg Picolo app, with custom questions!
+Bootleg Picolo app, with custom questions! More info in the [game design document](./docs/design.md).
 
 ## Development
 
