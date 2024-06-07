@@ -1,6 +1,6 @@
 # Chocolo - Game Design
 
-By @Chocorean for a friend's wedding and hopefully more.
+By [InTeam](https://inteam.eu.org) for a friend's wedding and hopefully more. [Credits to Thor](https://www.develop.games) for sharing a Game Design document example.
 
 ## Table of contents
 
