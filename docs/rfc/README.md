@@ -15,4 +15,5 @@ Thanks!
 
 ## RFCs
 
-- [0001-inteam.md](0001-inteam.md)
+- [InTeam gamemode](0002-inteam.md)
+- [Paul's EVG gamemode](0001-pevg.md)
