@@ -3,28 +3,6 @@ class Event < ApplicationRecord
 
   validate :json_schema_validation
 
-  # Return a list sentences
-  def build
-    case kind
-    when 'statement'
-      texts.map do |t|
-        text = t
-        puts text
-        if text.include? '{sips}'
-          text = text.gsub('{sips}', sips.to_s)
-        end
-        # TODO
-        # if text.include? '{player_X}' # use regex here
-        #   ...
-        # end
-        text
-      end
-    else
-      raise NotImplementedError
-    end
-  end
-
-  private
   # getters
   def kind
     properties['kind']
@@ -34,17 +12,23 @@ class Event < ApplicationRecord
     properties['texts']
   end
 
+  def texts=(texts)
+    properties['texts'] = texts
+  end
+
   def turns
     properties['turns']
   end
 
-  def protagonists
-    properties['protagonists']
+  def players
+    properties['players']
   end
 
   def sips
-    properties['sips']
+    rand(properties['minimumSips']..properties['maximumSips'])
   end
+
+  private
 
   # schema validation
   def json_schema_validation

@@ -13,9 +13,10 @@ class Public::ThemesController < ApplicationController
     end
 
     params = theme_params
+    players = params[:players]
 
     # Check if players are unique
-    if params[:players].uniq.length != params[:players].length
+    if players.uniq.length != players.length
       render json: {
         "status": "error",
         "message": "Players must be unique."
@@ -24,7 +25,7 @@ class Public::ThemesController < ApplicationController
     end
 
     # Check if there are enough players
-    if params[:players].length <= 2
+    if players.length <= 2
       render json: {
         "status": "error",
         "message": "Players must be at least 3 to play."
@@ -34,7 +35,7 @@ class Public::ThemesController < ApplicationController
 
     render json: {
       "status": "success",
-      "events": @theme.events.shuffle.map(&:build)
+      "events": Core::Themes::ThemeGenerator.generate(@theme, players)
     }
   end
 

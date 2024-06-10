@@ -21,10 +21,10 @@
     "turns": {
       "type": "integer"
     },
-    "players": {
+    "minimumSips": {
       "type": "integer"
     },
-    "sips": {
+    "maximumSips": {
       "type": "integer"
     },
     "first": {
@@ -34,5 +34,6 @@
   "required": [
     "kind",
     "texts"
-  ]
+  ],
+  "additionalProperties": false
 }
