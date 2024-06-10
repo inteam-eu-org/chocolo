@@ -38,15 +38,15 @@ class EventTest < ActiveSupport::TestCase
   test "the validity of complete events" do
     events = []
     events << Event.create(properties: {
-      "kind": "simple",
-      "sips": 2,
+      "kind": "statement",
+      "minimumSips": 2,
       "texts": ["What is the capital of France?"],
     })
     events << Event.create(properties: {
-      "kind": "simple",
+      "kind": "statement",
       "texts": ["What is the capital of France?"],
       "first": 2,
-      "sips": 2,
+      "minimumSips": 2,
     })
     assert events.all?(&:valid?)
   end
