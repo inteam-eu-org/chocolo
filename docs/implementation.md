@@ -82,28 +82,26 @@ When loading a theme, all `Event`s are first shuffled. Then the sentences are ex
 That means while reading the `Event`s, we should set aside and keep track of an temporal **offset** for future events that is decreased every time a new event is added:
 
 ```mermaid
-zenuml
+sequenceDiagram
     title Workflow example
-    @Database Q as Events
-    @Actor S as Sentences
-    @Database F as Futures
-    Q->S: statement with 1 sentence
-    par {
-      Q->S: curse_A 1st sentence
-      // At the same time the first part is added and
-      // the secondary part is saved with its offset for later
-      Q->F: curse_A 2nd sentence with offset of 3
-    }
-    Q->S: statement with 2 sentences
-    Q->S: statement with 1 sentences
-    par {
-      Q->S: curse_B 1st sentence
-      Q->F: curse_A 2nd sentence with offset of 4
-    }
-    // Offset = 0: we add the second part.
-      F->S: curse_A 2nd sentence
-    // Last Event in the queue.
-    Q->S: statement
-    // Emptying the Futures queue.
-    F->S: curse_B 2nd sentence
+    participant Q as Events
+    participant S as Sentences
+    participant F as Futures
+    
+    Q->>S: statement with 1 sentence
+    par 
+        Q->>S: curse_A 1st sentence
+        Q->>F: curse_A 2nd sentence with offset of 3
+    end
+    
+    Q->>S: statement with 2 sentences
+    Q->>S: statement with 1 sentence
+    par 
+        Q->>S: curse_B 1st sentence
+        Q->>F: curse_A 2nd sentence with offset of 4
+    end
+    
+    F->>S: curse_A 2nd sentence
+    Q->>S: statement
+    F->>S: curse_B 2nd sentence
 ```
