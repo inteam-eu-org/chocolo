@@ -1,6 +1,6 @@
 # CHOCOLO
 
-Bootleg Picolo app, with custom questions! More info in the [game design document](./docs/design.md).
+Bootleg Picolo app, with custom questions! More info in the [game design document](./docs/design.md) and the [core implementation document](./docs/implementation.md).
 
 ## Development
 
@@ -49,7 +49,7 @@ Use Ctrl-C to stop
 
 ## Questions specs
 
-Look at `./config/schemas/question.json` to change the specification of the questions.
+Look at `./config/schemas/event.json` to change the specification of the questions.
 
 ## Testing
 

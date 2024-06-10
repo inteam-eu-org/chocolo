@@ -12,7 +12,7 @@ class Public::ThemesController < ApplicationController
     else
       render json: {
         "status": "success",
-        "questions": @theme.questions.shuffle.map(&:build)
+        "events": @theme.events.shuffle.map(&:build)
       }
     end
   end

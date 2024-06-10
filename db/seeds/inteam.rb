@@ -5,32 +5,32 @@ themes = [
   Theme.create(name: "Les Beuteu du NIST")
 ]
 
-[Question.create(properties: {
+[Event.create(properties: {
   "kind": "simple",
   "sips": 2,
   "primaryText": "Shit on the roof of the building of drink {sips}.",
 }),
-Question.create(properties: {
+Event.create(properties: {
   "kind": "effect",
   "primaryText": "Talk like Elastchin from now."
-})].each do |question|
-  question.themes += themes
+})].each do |event|
+  event.themes += themes
 end
 
-# Only contains the implemented questions
+# Only contains the implemented events
 playable = Theme.create(name: 'Gameloop test')
-[Question.create(properties: {
+[Event.create(properties: {
   "kind": "simple",
   "sips": 2,
   "primaryText": "Shit on the roof of the building of drink {sips}.",
 }),
-Question.create(properties: {
+Event.create(properties: {
   "kind": "simple",
   "primaryText": "Give a sip if you kissed a member of the InTeam."
 }),
-Question.create(properties: {
+Event.create(properties: {
   "kind": "simple",
   "primaryText": "Finish your drink if you had sex with a member of the InTeam."
-})].each do |question|
-  question.themes << playable
+})].each do |event|
+  event.themes << playable
 end

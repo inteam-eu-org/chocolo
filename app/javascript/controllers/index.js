@@ -10,12 +10,12 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-let questions = []
+let events = []
 
 window.initGame = function () {
   // Display loader
   $('#loader').show();
-  // Query the questions for the game
+  // Query the events for the game
   const theme_id = $('#theme-select').find(":selected").val();
   $.ajax({
     url: '/themes/' + theme_id,
@@ -26,10 +26,10 @@ window.initGame = function () {
       if (data["status"] === "error") {
         alert(data["message"]);
       } else if (data["status"] === "success") {
-        questions = data["questions"];
+        events = data["events"];
         startGame();
       } else {
-        alert('An error occurred while trying to fetch the questions');
+        alert('An error occurred while trying to fetch the events');
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {
@@ -50,13 +50,13 @@ window.startGame = function () {
 }
 
 window.updateGame = function () {
-  // If ran out of questions, finish the game!
-  if (questions.length === 0) {
+  // If ran out of events, finish the game!
+  if (events.length === 0) {
     finishGame();
     return;
   }
-  // Display the next question
-  $('#question').text(questions.shift());
+  // Display the next event
+  $('#event').text(events.shift());
 }
 
 window.finishGame = function () {

@@ -1,4 +1,4 @@
-class Question < ApplicationRecord
+class Event < ApplicationRecord
   has_and_belongs_to_many :themes
 
   validate :json_schema_validation
@@ -44,7 +44,7 @@ class Question < ApplicationRecord
 
   # schema validation
   def json_schema_validation
-    schema_path = Rails.root.join('config', 'schemas', 'question.json')
+    schema_path = Rails.root.join('config', 'schemas', 'event.json')
     schema = JSON.parse(File.read(schema_path))
 
     errors.add(:properties, 'is invalid') unless JSON::Validator.validate(schema, self.properties)

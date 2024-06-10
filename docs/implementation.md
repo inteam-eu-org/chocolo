@@ -61,9 +61,9 @@ to create very unique games.
 
 When starting a game, the backend should send a list of sentences for the frontend to display in the same order, that's it. 100% of the logic is handled behind the scenes. The only input the backend needs is the `Theme` to use, and the players' names (eventually settings and game options in the future).
 
-### Question model
+### Event model
 
-A `Question` is a JSON object, defined by a [schema](../config/schemas/question.json). The only mandatory fields are `kind` - which tells what fields we should expect further -, and `texts` - a non-empty list of sentences to be displayed.
+A `Event` is a JSON object, defined by a [schema](../config/schemas/event.json). The only mandatory fields are `kind` - which tells what fields we should expect further -, and `texts` - a non-empty list of sentences to be displayed.
 
 The only exception is `sips` and `protagonists` are injected in the sentences if the patterns `{sips}` or `{player_X}` are found in the sentence.
 
@@ -77,14 +77,14 @@ The exhaustive list of optional fields is given below.
 
 ### Sentences generation
 
-When loading a theme, all `Question`s are first shuffled. Then the sentences are extracted depending on the `kind`. `Question`s that have future effects are special, because they should add at least two sentences with a different timing, so we need to first determine how long in the future the event will happen, then add the first sentences, let other be added, and finally add the rest.
+When loading a theme, all `Event`s are first shuffled. Then the sentences are extracted depending on the `kind`. `Event`s that have future effects are special, because they should add at least two sentences with a different timing, so we need to first determine how long in the future the event will happen, then add the first sentences, let other be added, and finally add the rest.
 
-That means while reading the `Question`s, we should set aside and keep track of an temporal **offset** for future events that is decreased every time a new question is added:
+That means while reading the `Event`s, we should set aside and keep track of an temporal **offset** for future events that is decreased every time a new event is added:
 
 ```mermaid
 zenuml
     title Workflow example
-    @Database Q as Questions
+    @Database Q as Events
     @Actor S as Sentences
     @Database F as Futures
     Q->S: statement with 1 sentence
@@ -102,7 +102,7 @@ zenuml
     }
     // Offset = 0: we add the second part.
       F->S: curse_A 2nd sentence
-    // Last Question in the queue.
+    // Last Event in the queue.
     Q->S: statement
     // Emptying the Futures queue.
     F->S: curse_B 2nd sentence

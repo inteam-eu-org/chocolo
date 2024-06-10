@@ -1,5 +1,5 @@
 {
-  "title": "Product",
+  "title": "Event",
   "description": "A Chocolo question, challenge, anything.",
   "type": "object",
   "properties": {

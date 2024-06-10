@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_07_174717) do
-  create_table "questions", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_133058) do
+  create_table "events", force: :cascade do |t|
     t.json "properties"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions_themes", id: false, force: :cascade do |t|
+  create_table "events_themes", id: false, force: :cascade do |t|
     t.integer "theme_id"
-    t.integer "question_id"
-    t.index ["question_id"], name: "index_questions_themes_on_question_id"
-    t.index ["theme_id"], name: "index_questions_themes_on_theme_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_events_themes_on_event_id"
+    t.index ["theme_id"], name: "index_events_themes_on_theme_id"
   end
 
   create_table "themes", force: :cascade do |t|
