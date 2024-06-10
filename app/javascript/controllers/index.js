@@ -15,12 +15,18 @@ let events = []
 window.initGame = function () {
   // Display loader
   $('#loader').show();
+  // Gather the players names
+  let players = $('#form-grid > input.grid-item').map(function () {
+    return $(this).val()
+  }).get().filter((word) => word.length > 0);
   // Query the events for the game
   const theme_id = $('#theme-select').find(":selected").val();
   $.ajax({
     url: '/themes/' + theme_id,
+    beforeSend: function (xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+    data: { players: players },
     dataType: "json",
-    type: 'GET',
+    type: 'POST',
     success: function (data) {
       $('#loader').hide();
       if (data["status"] === "error") {
@@ -29,7 +35,7 @@ window.initGame = function () {
         events = data["events"];
         startGame();
       } else {
-        alert('An error occurred while trying to fetch the events');
+        alert(data["message"]);
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {
