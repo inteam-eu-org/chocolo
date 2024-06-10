@@ -10,24 +10,29 @@
         "effect"
       ]
     },
-    "primaryText": {
-      "type": "string"
-    },
-    "secondaryText": {
-      "type": "string"
+    "texts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
     },
     "turns": {
       "type": "integer"
     },
-    "protagonists": {
+    "players": {
       "type": "integer"
     },
     "sips": {
+      "type": "integer"
+    },
+    "first": {
       "type": "integer"
     }
   },
   "required": [
     "kind",
-    "primaryText"
+    "texts"
   ]
 }
