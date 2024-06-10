@@ -7,7 +7,7 @@ class EventTest < ActiveSupport::TestCase
       "kind": "simple",
     })
     events << Event.new(properties: {
-      "primaryText": "simple",
+      "texts": ["simple"],
       "turns": "2"
     })
     events << Event.new(properties: {
@@ -22,15 +22,15 @@ class EventTest < ActiveSupport::TestCase
     events << Event.new(properties: {
       "kind": "random",
       "sips": 2,
-      "primaryText": "What is the capital of France?",
+      "texts": ["What is the capital of France?"],
       "turns": 2
     })
-    # turns is a string
+    # first is a string
     events << Event.new(properties: {
       "kind": "simple",
       "sips": 2,
-      "primaryText": "What is the capital of France?",
-      "turns": "2"
+      "texts": ["What is the capital of France?"],
+      "first": "2"
     })
     assert events.all?(&:invalid?)
   end
@@ -40,12 +40,12 @@ class EventTest < ActiveSupport::TestCase
     events << Event.create(properties: {
       "kind": "simple",
       "sips": 2,
-      "primaryText": "What is the capital of France?",
+      "texts": ["What is the capital of France?"],
     })
     events << Event.create(properties: {
       "kind": "simple",
-      "primaryText": "What is the capital of France?",
-      "turns": 2,
+      "texts": ["What is the capital of France?"],
+      "first": 2,
       "sips": 2,
     })
     assert events.all?(&:valid?)

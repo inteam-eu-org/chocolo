@@ -6,8 +6,8 @@
     "kind": {
       "type": "string",
       "enum": [
-        "simple",
-        "effect"
+        "statement",
+        "curse"
       ]
     },
     "texts": {

@@ -3,15 +3,23 @@ class Event < ApplicationRecord
 
   validate :json_schema_validation
 
+  # Return a list sentences
   def build
     case kind
-    when 'simple'
-      if primary.include? '{sips}'
-        primary.gsub('{sips}', sips.to_s)
-      else
-        primary
+    when 'statement'
+      texts.map do |t|
+        text = t
+        puts text
+        if text.include? '{sips}'
+          text = text.gsub('{sips}', sips.to_s)
+        end
+        # TODO
+        # if text.include? '{player_X}' # use regex here
+        #   ...
+        # end
+        text
       end
-    when 'effect'
+    else
       raise NotImplementedError
     end
   end
@@ -22,12 +30,8 @@ class Event < ApplicationRecord
     properties['kind']
   end
 
-  def primary
-    properties['primaryText']
-  end
-
-  def secondary
-    properties['secondaryText']
+  def texts
+    properties['texts']
   end
 
   def turns
