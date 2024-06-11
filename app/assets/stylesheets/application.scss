@@ -98,11 +98,14 @@ body {
   }
 }
 
-
-
-/* Titles */
-
 /* Game preparation */
+
+.btn-remove-player {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+}
 
 /* Game cloud */
 
@@ -117,15 +120,20 @@ body {
 
 /* Footer styling */
 footer {
-  background-color:$secondary; /* Purple background color */
-  padding: 20px 0; /* Add some padding for better spacing */
+  background-color: $secondary;
+  /* Purple background color */
+  padding: 20px 0;
+  /* Add some padding for better spacing */
 }
 
 footer a {
-  color: #EEF4ED; /* White color for links */
-  text-decoration: none; /* Remove underline from links */
+  color: #EEF4ED;
+  /* White color for links */
+  text-decoration: none;
+  /* Remove underline from links */
 }
 
 footer a:hover {
-  text-decoration: underline; /* Underline links on hover */
+  text-decoration: underline;
+  /* Underline links on hover */
 }
