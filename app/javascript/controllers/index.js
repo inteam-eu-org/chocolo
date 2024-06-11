@@ -47,11 +47,10 @@ window.initGame = function () {
 
 window.startGame = function () {
   // Hide the UI
-  $('#theme').hide();
-  $('#form').hide();
-  $('#start').hide();
+  $('#setup-container').css('display', 'none');
   // Shows the game
-  $('#game').css('display', 'block');
+  $('#game-container').css('display', 'flex');
+  $('#game').css('display', 'flex');
   updateGame();
 }
 
@@ -66,6 +65,60 @@ window.updateGame = function () {
 }
 
 window.finishGame = function () {
-  $('#game').hide();
-  $('#end').css('display', 'block');
+  $('#game').css('display', 'none');
+  $('#end').css('display', 'flex');
+}
+
+
+window.addPlayerSlot = function () {
+  const inputGroup = document.getElementById('form-grid');
+  const inputs = inputGroup.querySelectorAll('.form-control');
+
+  // Check if any input is empty
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].value.trim() === '') {
+      // If any input is empty, do not add a new one
+      alert("Ya déjà un champs vide débilos");
+      return;
+    }
+  }
+
+  // Check if any input is empty
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].value.trim() === '') {
+      // If any input is empty, do not add a new one
+      alert("Ya déjà un champs vide débilos");
+      return;
+    }
+  }
+
+  // If all inputs are filled, add a new one
+  const newCol = document.createElement('div');
+  newCol.className = 'col position-relative';
+
+  const inputWrapper = document.createElement('div');
+  inputWrapper.className = 'position-relative';
+
+  const newInput = document.createElement('input');
+  newInput.type = 'text';
+  newInput.className = 'form-control pr-4';
+  inputWrapper.appendChild(newInput);
+
+  // Create the close button
+  const closeButton = document.createElement('button');
+  closeButton.type = 'button';
+  closeButton.className = 'btn-close btn-remove-player';
+  closeButton.setAttribute('aria-label', 'Close');
+  closeButton.setAttribute('onclick', 'removePlayerSlot(this)');
+  inputWrapper.appendChild(closeButton);
+
+  newCol.appendChild(inputWrapper);
+
+  // Insert the new input before the first child of the inputGroup
+  inputGroup.insertBefore(newCol, inputGroup.firstChild);
+}
+
+window.removePlayerSlot = function (button) {
+  const col = button.closest('.col');
+  col.remove();
 }

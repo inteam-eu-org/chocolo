@@ -4,13 +4,9 @@ $secondary: #519E8A;
 $tertiary: #837569;
 $white: #EEF4ED;
 
-.container {
-  width: 80%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-}
+
+@import "bootstrap";
+
 
 /* Forcing landscape mode */
 @media screen and (orientation:portrait) {
@@ -102,115 +98,13 @@ body {
   }
 }
 
-#footer {
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  height: 5%;
-  width: 100%;
-  padding-top: 1rem;
-  background-color: $secondary;
-  opacity: 0.5;
-  text-align: center;
-  cursor: pointer;
-}
-
-/* Titles */
-h1 {
-  font-size: 6rem;
-  text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
-}
-
-h2 {
-  font-size: 2rem;
-  margin: 0;
-}
-
 /* Game preparation */
 
-#theme {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 2rem;
-}
-
-#theme h2 {
-  margin-top: 1rem;
-}
-
-#theme label {
-  height: 100%;
-  padding: 0.5rem;
-  border: 0.5px solid $white;
-  border-radius: 1rem;
-  background-color: $secondary;
-  cursor: pointer;
-}
-
-#theme select {
-  border: none;
-  outline: none;
-  display: inline-block;
-  text-align: center;
-  font-size: 2rem;
-  color: $white;
-  background-color: $secondary;
-  font-family: 'Sugarpunch DEMO', sans-serif;
-  appearance: none;
-  cursor: pointer;
-}
-
-#form {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-#form-grid {
-  width: 60%;
-  margin: auto;
-  padding: 0.5rem;
-  background-color: $tertiary;
-  border: 0.5px solid $white;
-  border-radius: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-#form-grid>.grid-item:nth-child(even) {
-  border-left: 0.5px solid $white;
-}
-
-#form-grid>.grid-item {
-  margin: 0.5rem;
-  padding-top: 0.5rem;
-  font-size: x-large;
-  color: black;
-  background-color: beige;
-  background-blend-mode: darken;
-  font-family: 'Sugarpunch DEMO', sans-serif;
-  text-align: center;
-}
-
-#form-grid>.grid-item:focus {
-  outline: none !important;
-  border-color: $secondary;
-  box-shadow: 0 0 10px $secondary;
-}
-
-#start {
-  text-align: center;
-  font-size: 2rem;
-  color: $white;
-  background-color: $secondary;
-  border: 0.5px solid $white;
-  border-radius: 1rem;
-  font-family: 'Sugarpunch DEMO', sans-serif;
-  width: 50%;
-  margin: auto;
-  padding-top: 0.5rem;
-  cursor: pointer;
+.btn-remove-player {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
 }
 
 /* Game cloud */
@@ -219,19 +113,27 @@ h2 {
   display: none;
 }
 
-#event {
-  font-family: 'Sugarpunch DEMO', sans-serif;
-  color: $primary;
-  background-color: $white;
-  width: 50%;
-  margin: auto;
-  margin-top: 5rem;
-  font-size: 3rem;
-  padding: 4rem;
-  text-align: center;
-}
-
 /* End screen */
 #end {
   display: none;
+}
+
+/* Footer styling */
+footer {
+  background-color: $secondary;
+  /* Purple background color */
+  padding: 20px 0;
+  /* Add some padding for better spacing */
+}
+
+footer a {
+  color: #EEF4ED;
+  /* White color for links */
+  text-decoration: none;
+  /* Remove underline from links */
+}
+
+footer a:hover {
+  text-decoration: underline;
+  /* Underline links on hover */
 }
