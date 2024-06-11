@@ -14,6 +14,14 @@ class Public::ThemesController < ApplicationController
 
     params = theme_params
     players = params[:players]
+    if players.nil?
+      render json: {
+        "status": "error",
+        "message": "Players must be provided."
+      }
+      return;
+    end
+
 
     # Check if players are unique
     if players.uniq.length != players.length

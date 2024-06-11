@@ -16,7 +16,7 @@ window.initGame = function () {
   // Display loader
   $('#loader').show();
   // Gather the players names
-  let players = $('#form-grid > input.grid-item').map(function () {
+  let players = $('#form-grid input.form-control').map(function () {
     return $(this).val()
   }).get().filter((word) => word.length > 0);
   // Query the events for the game
