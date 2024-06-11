@@ -47,6 +47,10 @@ Puma starting in single mode...
 Use Ctrl-C to stop
 ```
 
+### Installation
+
+Depending of the Operating System and the device (laptop/mobile), the installation might differ. The process is explained [here](./docs/installation.md).
+
 ## Questions specs
 
 Look at `./config/schemas/event.json` to change the specification of the questions.

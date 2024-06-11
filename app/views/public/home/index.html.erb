@@ -1,38 +1,94 @@
-<div class="container">
-  <div id="title">
-    <h1>CHOCOLO</h1>
-  </div>
-  <div id="theme">
-    <h2>What theme are we playing with today?</h2>
-    <label onclick="$(this).children()[0].click()">
-      <select id="theme-select">
+<!-- Main content container with scrolling enabled -->
+<div id="setup-container" class="container mt-5">
+  <div id="theme" class="text-center mb-4">
+    <h2 class="h4 mb-3">Quel thème vous intéresse ?</h2>
+    <label onclick="$(this).children()[0].click()" class="d-inline-block position-relative bg-secondary">
+      <select id="theme-select" class="form-select d-inline-block w-auto bg-secondary">
         <% @themes.each do |theme| %>
           <option value="<%= theme.id %>"><%= theme.name %></option>
         <% end %>
       </select>
-      <i class="fa-solid fa-angle-down"></i>
     </label>
   </div>
-  <div id="form">
-    <h2>Who is playing today?</h2><br />
-    <div id="form-grid">
-      <input type="text" class="grid-item" value="Paul" />
-      <input type="text" class="grid-item" value="Louise" />
-      <input type="text" class="grid-item" value="Manon" />
-      <input type="text" class="grid-item" value="Yande" />
-      <input type="text" class="grid-item" value="Darko" />
-      <input type="text" class="grid-item" value="Cedo" />
-      <input type="text" class="grid-item" value="Nico" />
-      <% 3.times do %>
-        <input type="text" class="grid-item" />
-        <% end %>
+  <div id="form" class="text-center mb-4">
+    <h2 class="h4 mb-3 d-flex justify-content-between align-items-center">Qui joue aujourd'hui ?
+      <button class="btn btn-primary" type="button" onclick="addPlayerSlot()">
+        <i class="fas fa-plus"></i> Ajouter joueur
+      </button>
+    </h2><br />
+    <div id="form-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col position-relative">
+        <div class="position-relative">
+          <input type="text" class="form-control pr-4" value="Paul" />
+          <button type="button" class="btn-close btn-remove-player" aria-label="Close" onclick="removePlayerSlot(this)"></button>
+        </div>
+      </div>
     </div>
   </div>
-  <button id="start" onclick="initGame()">Start the Game</button>
-  <div id="game" onclick="updateGame()">
-    <div id="event"></div>
-  </div>
-  <div id="end" onclick="$(this).hide(); $('#theme').show(); $('#form').show(); $('#start').show();">
-    <h2>Thanks for playing!</h2>
+  <div class="text-center mb-4">
+    <button id="start" class="btn btn-primary" onclick="initGame()">Lancer le jeu <i class="fas fa-play"></i></button>
   </div>
 </div>
+<div id="game-container" style="display: none;height:80%" class="container-fluid flex-column align-items-center justify-content-center">
+  <div id="game" style="display: none;" class="flex-column align-items-center justify-content-center w-100 h-100" onclick="updateGame()">
+    <div id="event" class="fs-2 text-break"></div>
+  </div>
+  <div id="end" style="display: none;" class="flex-column align-items-center justify-content-center w-100 h-100"  onclick="$(this).css('display','none');$('#game-container').css('display','none'); $('#setup-container').css('display','block')">
+    <h2 class="fs-2 text-break">Merci d'avoir jouer!</h2>
+  </div>
+</div>
+
+<script>
+  function addPlayerSlot() {
+    const inputGroup = document.getElementById('form-grid');
+    const inputs = inputGroup.querySelectorAll('.form-control');
+
+    // Check if any input is empty
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].value.trim() === '') {
+        // If any input is empty, do not add a new one
+        alert("Ya déjà un champs vide débilos");
+        return;
+      }
+    }
+
+    // If all inputs are filled, add a new one
+    const newCol = document.createElement('div');
+    newCol.className = 'col position-relative';
+
+    const inputWrapper = document.createElement('div');
+    inputWrapper.className = 'position-relative';
+
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.className = 'form-control pr-4';
+    inputWrapper.appendChild(newInput);
+
+    // Create the close button
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'btn-close btn-remove-player';
+    closeButton.setAttribute('aria-label', 'Close');
+    closeButton.setAttribute('onclick', 'removePlayerSlot(this)');
+    inputWrapper.appendChild(closeButton);
+
+    newCol.appendChild(inputWrapper);
+
+    // Insert the new input before the first child of the inputGroup
+    inputGroup.insertBefore(newCol, inputGroup.firstChild);
+  }
+
+  function removePlayerSlot(button) {
+    const col = button.closest('.col');
+    col.remove();
+  }
+</script>
+
+<style>
+  .btn-remove-player {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+  }
+</style>

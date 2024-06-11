@@ -36,3 +36,6 @@
 
 # JetBrain app
 .idea/
+
+# MACOS
+.DS_Store

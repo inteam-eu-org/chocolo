@@ -69,3 +69,6 @@ end
 gem "sass-rails", "~> 6.0"
 
 gem "json-schema", "~> 4.3"
+gem "jquery-rails"
+gem "bootstrap"
+gem "sassc-rails"

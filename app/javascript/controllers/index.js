@@ -41,11 +41,10 @@ window.initGame = function () {
 
 window.startGame = function () {
   // Hide the UI
-  $('#theme').hide();
-  $('#form').hide();
-  $('#start').hide();
+  $('#setup-container').css('display', 'none');
   // Shows the game
-  $('#game').css('display', 'block');
+  $('#game-container').css('display', 'flex');
+  $('#game').css('display', 'flex');
   updateGame();
 }
 
@@ -60,6 +59,6 @@ window.updateGame = function () {
 }
 
 window.finishGame = function () {
-  $('#game').hide();
-  $('#end').css('display', 'block');
+  $('#game').css('display', 'none');
+  $('#end').css('display', 'flex');
 }

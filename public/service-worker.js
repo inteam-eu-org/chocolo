@@ -1,15 +1,16 @@
 const CACHE_NAME = 'custom-picolo-cache-v1';
 const urlsToCache = [
   '/',
-  '/manifest.json',
-  '/stylesheets/application.scss',
-  '/javascripts/application.js'
+  '/manifest.json'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(urlsToCache))
+      .catch(error => {
+        console.error('Error instalinng service worker:', error);
+      })
   );
 });
 
@@ -18,6 +19,8 @@ self.addEventListener('fetch', event => {
     caches.match(event.request)
       .then(response => {
         return response || fetch(event.request);
+      }).catch(error => {
+        console.error('Error fetching service worker:', error);
       })
   );
 });
@@ -33,6 +36,8 @@ self.addEventListener('activate', event => {
           }
         })
       );
-    })
+    }).catch(error => {
+        console.error('Error activating service worker:', error);
+      })
   );
 });
