@@ -27,4 +27,35 @@ class ThemeGeneratorTest < ActiveSupport::TestCase
     assert sentences.any? { |s| /^Drink [2-5]\.$/.match? s }
     assert sentences.any? { |s| /^(Alice)|(Bob)|(Charlie) finish your drink\.$/.match? s }
   end
+
+  test "the validity of cursed events" do
+    # Fake data
+    first_sentence = "The player facing the GM can't speak French anymore."
+    third_sentence = "Tu peux reparler francais."
+    second_sentence = "GM finish your drink."
+    events = [
+      Event.create(properties: {
+        "kind": "curse",
+        "texts": [
+          first_sentence,
+          third_sentence
+        ],
+        "first": 1,
+        "turns": 1
+      }), Event.create(properties: {
+        "kind": "statement",
+        "texts": [second_sentence],
+      })
+    ]
+    theme = Theme.create(name: "Test theme")
+    events.each do |event|
+      event.themes << theme
+    end
+
+    sentences = Core::Themes::ThemeGenerator.generate(theme, [], shuffle: false)
+
+    assert sentences.first == first_sentence
+    assert sentences[1] == second_sentence
+    assert sentences.last == third_sentence
+  end
 end

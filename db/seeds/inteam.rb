@@ -22,11 +22,11 @@ unless Rails.env.production?
 
   # Only contains the implemented events
   playable = Theme.create(name: 'Gameloop test')
-  [
+  events = [
     Event.create(properties: {
       "kind": "statement",
-      "minimumSips": 2,
-      "maximumSips": 2,
+      "minimumSips": 4,
+      "maximumSips": 8,
       "texts": ["Shit on the roof of the building or drink {sips}."],
     }),
     Event.create(properties: {
@@ -41,7 +41,22 @@ unless Rails.env.production?
       "kind": "statement",
       "texts": ["{player_A}, finish {player_B} drink", "{player_B} give twice sips next time."]
     }),
-  ].each do |event|
+    Event.create(properties: {
+      "kind": "curse",
+      "texts": [
+        "{player_A} speak english only from now.",
+        "{player_A} you don't speak english anymore"
+      ],
+      "first": 1,
+      "turns": 3
+    })
+  ]
+  events += [
+    Event.create(properties: {
+      "kind": "statement",
+      "texts": ["remplissage"]
+    })] * 10
+  events.each do |event|
     event.themes << playable
   end
 end

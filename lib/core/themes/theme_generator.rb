@@ -13,14 +13,18 @@ module Core::Themes
     end
 
     def valid?
-      @offset == 0
+      @offset < 0
     end
   end
 
   class ThemeGenerator
     # Generate sentences for a given theme and players
-    def self.generate(theme, players)
-      queue = theme.events.shuffle
+    def self.generate(theme, players, options = {})
+      queue = theme.events.to_a
+      unless options[:shuffle] == false
+        queue = queue.shuffle
+      end
+
       futures = []
       sentences = []
 
@@ -51,14 +55,18 @@ module Core::Themes
         end
 
         # Inspect kind and process it accordingly
-        # TODO: implement future sentences logic
-        sentences += event.texts
+        if event.kind == 'curse'
+          sentences += event.texts[0..event.first-1]
+          futures.push(Future.new(event.texts[event.first..], event.turns))
+        else
+          sentences += event.texts
+        end
 
         # Decrease futures offsets and add them to the queue if they are valid
         futures.each do |f|
           f.update
           if f.valid?
-            queue.push(futures.delete f)
+            sentences += futures.delete(f).texts
           end
         end
       end

@@ -20,6 +20,10 @@ class Event < ApplicationRecord
     properties['turns']
   end
 
+  def first
+    properties['first']
+  end
+
   def players
     properties['players']
   end
