@@ -39,3 +39,6 @@
 
 # MACOS
 .DS_Store
+
+# tests and reports
+coverage

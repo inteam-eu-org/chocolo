@@ -2,38 +2,34 @@ require "application_system_test_case"
 
 class ThemesTest < ApplicationSystemTestCase
   setup do
-    @theme = themes(:one)
+    @theme = Theme.create(name: 'test theme')
+    @event = Event.create(properties: {
+      "kind": "statement",
+      "texts": ["test"]
+    })
+    @event.themes << @theme
+
+    visit root_path
+    # Dealing with modal
+    execute_script("$('#installModal').remove()")
   end
 
-  test "visiting the index" do
-    visit themes_url
-    assert_selector "h1", text: "Themes"
+  test "it shows a dialog when less than three players" do
+    first('input.form-control').set('Alice')
+    accept_alert do
+      click_button 'Lancer le jeu'
+    end
   end
 
-  test "should create theme" do
-    visit themes_url
-    click_on "New theme"
-
-    click_on "Create Theme"
-
-    assert_text "Theme was successfully created"
-    click_on "Back"
-  end
-
-  test "should update Theme" do
-    visit theme_url(@theme)
-    click_on "Edit this theme", match: :first
-
-    click_on "Update Theme"
-
-    assert_text "Theme was successfully updated"
-    click_on "Back"
-  end
-
-  test "should destroy Theme" do
-    visit theme_url(@theme)
-    click_on "Destroy this theme", match: :first
-
-    assert_text "Theme was successfully destroyed"
+  test "adding players and starting the game" do
+    # select theme
+    # Adding players
+    click_button 'Ajouter joueur'
+    first('input.form-control').set('Alice')
+    click_button 'Ajouter joueur'
+    first('input.form-control').set('Bob')
+    # Start game
+    click_button 'Lancer le jeu'
+    assert find('#event').text != ''
   end
 end
