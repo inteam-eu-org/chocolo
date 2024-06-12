@@ -29,11 +29,12 @@
     <button id="start" class="btn btn-primary" onclick="initGame()">Lancer le jeu <i class="fas fa-play"></i></button>
   </div>
 </div>
-<div id="game-container" style="display: none;height:80%" class="container-fluid flex-column align-items-center justify-content-center">
-  <div id="game" style="display: none;" class="flex-column align-items-center justify-content-center w-100 h-100" onclick="updateGame()">
-    <div id="event" class="fs-2 text-break"></div>
+<div id="game-container" style="display: none;" class="container-fluid flex-column align-items-center justify-content-center h-100">
+  <div id="game" style="display: none;" class="cloud-box flex-column align-items-center justify-content-center w-75 h-75" onclick="updateGame()">
+    <div id="event" class="fs-4 fw-bolder text-center text-wrap"></div>
+    <div id="background" class="background-icons"></div>
   </div>
   <div id="end" style="display: none;" class="flex-column align-items-center justify-content-center w-100 h-100"  onclick="$(this).css('display','none');$('#game-container').css('display','none'); $('#setup-container').css('display','block')">
-    <h2 class="fs-2 text-break">Merci d'avoir jouer!</h2>
+    <h2 class="fs-2 text-center">Merci d'avoir joué!</h2>
   </div>
 </div>
