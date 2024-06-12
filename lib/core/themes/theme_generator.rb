@@ -24,6 +24,7 @@ module Core::Themes
       unless options[:shuffle] == false
         queue = queue.shuffle
       end
+      queue = queue.take(50)
 
       futures = []
       sentences = []
