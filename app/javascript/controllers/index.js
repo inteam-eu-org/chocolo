@@ -48,9 +48,12 @@ window.initGame = function () {
 window.startGame = function () {
   // Hide the UI
   $('#setup-container').css('display', 'none');
+  $('#title').hide();
+
   // Shows the game
   $('#game-container').css('display', 'flex');
   $('#game').css('display', 'flex');
+
   updateGame();
 }
 
@@ -66,7 +69,10 @@ window.updateGame = function () {
 
 window.finishGame = function () {
   $('#game').css('display', 'none');
+  $('#title').show();
   $('#end').css('display', 'flex');
+  var audio = new Audio('https://actions.google.com/sounds/v1/human_voices/human_fart.ogg');
+  audio.play();
 }
 
 
