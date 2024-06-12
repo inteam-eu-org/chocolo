@@ -30,7 +30,7 @@ end
   "tu as déjà rompu avec quelqu'un par sms, sinon distribue-les.",
   "tu as déjà vu le cul de Paulo.",
   "tu es déjà allé au Havre (mets du respect).",
-  "tu fais partie de l'inTeam".,
+  "tu fais partie de l'inTeam.",
   "tu as été au BDE.",
   "tu t'appelles Paul (cadeau).",
   "tu as déjà joué au foot avec Paul.",
