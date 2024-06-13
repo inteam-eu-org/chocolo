@@ -70,11 +70,21 @@ Look at `./config/schemas/event.json` to change the specification of the questio
 
 ## Testing
 
-Not much to see here, eventually coverage and more will be added.
+Run your tests with:
 
+```bash
+rails test:all
 ```
-rails test
+
+It will generate a code coverage report at `./coverge/index.html`. Note that your branch won't be able to be merged if tests cover less than 5% of the codebase.
+
+You should also use rubocop to format your code:
+
+```bash
+rubocop
 ```
+
+Again, your branch won't be merged if rubocop raises the slightliest issue.
 
 ## To cover in the future
 
