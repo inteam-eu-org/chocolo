@@ -54,6 +54,16 @@ Use Ctrl-C to stop
 
 Depending of the Operating System and the device (laptop/mobile), the installation might differ. The process is explained [here](./docs/installation.md).
 
+### Merging changes to `main`
+
+Your merge requests will be automatically rejected if:
+
+- code coverage is less than 75%
+- `rails test` fails
+- `rubocop` fails
+
+Integration tests are not useable yet with the CI pipeline, it may become troublesome in the future, we will see how it goes. Ping @Chocorean if you encounter this issue.
+
 ## Questions specs
 
 Look at `./config/schemas/event.json` to change the specification of the questions.
