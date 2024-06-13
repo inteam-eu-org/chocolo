@@ -35,7 +35,9 @@ jobs:
         bundle install
 
     - name: Set up database
-      run: bin/rails db:schema:load
+      run: |
+        gem install pg
+        bin/rails db:schema:load
 
     - name: Run RuboCop
       run: bundle exec rubocop --parallel
