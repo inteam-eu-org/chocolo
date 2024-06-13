@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameQuestionToEvent < ActiveRecord::Migration[7.1]
   def change
     drop_table :questions_themes

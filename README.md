@@ -1,5 +1,7 @@
 # CHOCOLO
 
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
+
 Bootleg Picolo app, with custom questions! More info in the [game design document](./docs/design.md) and the [core implementation document](./docs/implementation.md).
 
 ## Development

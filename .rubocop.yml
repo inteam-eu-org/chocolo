@@ -1,0 +1,31 @@
+require:
+  - rubocop-capybara
+  - rubocop-rails
+
+Layout/LineLength:
+  Exclude:
+    - db/seeds/*.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - config/*.rb
+    - config/**/*.rb
+
+Metrics/MethodLength:
+  Max: 50
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/ReversibleMigration:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - app/helpers/*.rb
+    - config/*.rb
+    - config/**/*.rb
+    - db/migrate/*.rb
+    - test/*.rb
+    - test/*/*.rb
+    - test/**/**/*.rb
