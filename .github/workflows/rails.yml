@@ -1,0 +1,48 @@
+name: "Rails CI"
+on:
+  push:
+    branches: [ "main", "dev_ci" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Ruby and gems
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Set up database
+      run: |
+        bin/rails db:schema:load
+
+    - name: Run RuboCop
+      run: bundle exec rubocop --parallel
+
+    - name: Run tests and check coverage
+      run: |
+        bundle exec rails test
+        COVERAGE_PERCENT=$(grep -o '[0-9]+' | head -n1 coverage/.last_run.json)
+        echo "Coverage: $COVERAGE_PERCENT%"
+        if [ "$COVERAGE_PERCENT" -le 75 ]; then
+          echo "Code coverage is below 75%"
+          exit 1
+        fi
+
+    - name: Save coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: coverage/index.html
