@@ -1,6 +1,9 @@
 class Public::ThemesController < ApplicationController
-  before_action :ensure_json_request  
   before_action :set_theme, only: %i[ show ]
+  if Rails.env.test?
+    protect_from_forgery with: :null_session
+  end
+  protect_from_forgery with: :null_session
 
   # POST /themes/1
   def show
@@ -8,7 +11,7 @@ class Public::ThemesController < ApplicationController
       render json: {
         "status": "error",
         "message": "Theme not found"
-      }
+      }, status: :not_found
       return
     end
 
@@ -16,9 +19,9 @@ class Public::ThemesController < ApplicationController
     players = params[:players]
     if players.nil?
       render json: {
-        "status": "error",
-        "message": "Players must be provided."
-      }
+        status: "error",
+        message: "Players must be provided."
+      }, status: :unprocessable_entity
       return;
     end
 
@@ -26,37 +29,31 @@ class Public::ThemesController < ApplicationController
     # Check if players are unique
     if players.uniq.length != players.length
       render json: {
-        "status": "error",
-        "message": "Players must be unique."
-      }
+        status: "error",
+        message: "Players must be unique."
+      }, status: :unprocessable_entity
       return;
     end
 
     # Check if there are enough players
     if players.length <= 2
       render json: {
-        "status": "error",
-        "message": "Players must be at least 3 to play."
-      }
+        status: "error",
+        message: "Players must be at least 3 to play."
+      }, status: :unprocessable_entity
       return;
     end
 
     render json: {
-      "status": "success",
-      "events": Core::Themes::ThemeGenerator.generate(@theme, players)
+      status: "success",
+      events: Core::Themes::ThemeGenerator.generate(@theme, players)
     }
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_theme
-      @theme = Theme.find(params[:id])
-    end
-
-    # Only allow json requests
-    def ensure_json_request  
-      return if request.format == :json
-      render :nothing => true, :status => 406
+      @theme = Theme.find_by_id(params[:id])
     end
 
     def theme_params

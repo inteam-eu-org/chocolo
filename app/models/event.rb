@@ -24,10 +24,6 @@ class Event < ApplicationRecord
     properties['first']
   end
 
-  def players
-    properties['players']
-  end
-
   def sips
     rand(properties['minimumSips']..properties['maximumSips'])
   end

@@ -58,4 +58,29 @@ class ThemeGeneratorTest < ActiveSupport::TestCase
     assert sentences[1] == second_sentence
     assert sentences.last == third_sentence
   end
+
+  test "the futures are being emptied at the end of the game (useless)" do
+    # Fake data
+    events = [
+      Event.create(properties: {
+        "kind": "curse",
+        "texts": ["zgeg", "testos"],
+        "first": 1,
+        "turns": 10
+      }), Event.create(properties: {
+        "kind": "statement",
+        "texts": ["Drink."],
+      })
+    ]
+    theme = Theme.create(name: "Test theme")
+    events.each do |event|
+      event.themes << theme
+    end
+
+    sentences = Core::Themes::ThemeGenerator.generate(theme, [], shuffle: false)
+
+    assert sentences.first == "zgeg"
+    assert sentences[1] == "Drink."
+    assert sentences.last == "testos"
+  end
 end

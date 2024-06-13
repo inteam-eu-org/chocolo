@@ -75,7 +75,7 @@ module Core::Themes
       # Adding remaining futures (useless since the game is over)
       while !futures.empty?
         future = futures.shift
-        sentences.push(future.texts)
+        sentences += future.texts
       end
 
       sentences
