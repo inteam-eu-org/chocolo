@@ -100,7 +100,7 @@ window.addPlayerSlot = function () {
 
   // If all inputs are filled, add a new one
   const newCol = document.createElement('div');
-  newCol.className = 'col position-relative';
+  newCol.className = 'col';
 
   const inputWrapper = document.createElement('div');
   inputWrapper.className = 'position-relative';
@@ -122,6 +122,7 @@ window.addPlayerSlot = function () {
 
   // Insert the new input before the first child of the inputGroup
   inputGroup.insertBefore(newCol, inputGroup.firstChild);
+  newInput.focus();
 }
 
 window.removePlayerSlot = function (button) {
