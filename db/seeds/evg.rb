@@ -72,7 +72,7 @@ end
 {player_A}, fais un cul sec d'une pinte d'eau, ou bois un shot d'alcool pur.
 {player_A} et {player_B}, échangez un de vos vêtements. // {player_A} et {player_B} vous pouvez ré-échanger vos vêtements.
 {player_A}, mimes une expression française de ton choix. Le premier qui trouve distribue {sips} gorgées.
-Faites un cache-cache tout nu. Paul cherche-les et mets-leur une carotte dans le cul quand tu les retrouves. Ou buvez tous X gorgées. Enfin c'est vous qui voyez...
+Faites un cache-cache tout nu. Paul cherche-les et mets-leur une carotte dans le cul quand tu les retrouves. Ou buvez tous {sips} gorgées. Enfin c'est vous qui voyez...
 {player_A}, défies un autre joueur au \"pour combien?\", {sips} gorgées sont en jeu.
 {player_A} pense à un chiffre entre 1 et 10 et mimes une chute à vélo correspondant à cette intensité. Les autres joueurs doivent deviner ton chiffre. // Buvez autant de gorgées que vous êtes éloignés du bon chiffre.
 {player_A} pense à un chiffre entre 1 et 10 et fais une célébration de but correspondant à cette intensité. Les autres joueurs doivent deviner ton chiffre. // Buvez autant de gorgées que vous êtes éloignés du bon chiffre.
