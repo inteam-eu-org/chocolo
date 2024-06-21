@@ -20,8 +20,8 @@ tu es célibataire. Force à vous les frères et les soeurs.".split("\n").each d
   events << Event.create(properties: {
                            "kind": 'statement',
                            "texts": ["Distribue {sips} gorgées si #{s.strip}"],
-                           "minimumSips": 1,
-                           "maximumSips": 3
+                           "minimumSips": 2,
+                           "maximumSips": 4
                          })
 end
 # prends si
@@ -38,8 +38,8 @@ tu fais partie des Excel-adicts.".split("\n").each do |s|
   events << Event.create(properties: {
                            "kind": 'statement',
                            "texts": ["Prends {sips} gorgées si #{s.strip}"],
-                           "minimumSips": 1,
-                           "maximumSips": 3
+                           "minimumSips": 2,
+                           "maximumSips": 4
                          })
 end
 # categories
@@ -76,7 +76,6 @@ Faites un cache-cache tout nu. Paul cherche-les et mets-leur une carotte dans le
 {player_A} pense à un chiffre entre 1 et 10 et fais une célébration de but correspondant à cette intensité. Les autres joueurs doivent deviner ton chiffre. // Buvez autant de gorgées que vous êtes éloignés du bon chiffre.
 À tour de rôle, imitez Paul. Votez pour la pire imitation. // Paul donne un nombre de gorgées de ton choix au loser.
 {player_A}, donnes le telephone à {player_B}. // Donnes un avis impopulaire. Si tu n'arrives pas à créer la discorde, tu prends {sips} gorgées, sinon distribues-les!
-{player_A}, tu es Julien Lepers. Choisis un thème, et jusqu'à nouvel ordre, tu peux poser 3 questions pour faire boire un joueur inculte. S'il trouve la réponse, c'est toi qui bois!
 Élections municipales! Votez pour un maire. // Le gagnant peut distribuer un cul sec.
 Dissolution de l'assemblée ! Votez pour un député. // Le gagnant distribue {sips} gorgées parmi ses électeurs.
 {player_A}, choisis un mot. // Les prénoms des joueurs qui commencent par la même lettre que ce mot distribue {sips} gorgées. Bam.
@@ -127,6 +126,7 @@ end
 end
 # malediction
 "
+{player_A}, tu es Julien Lepers. Choisis un thème, et jusqu'à nouvel ordre, tu peux poser 3 questions pour faire boire un joueur inculte. S'il trouve la réponse, c'est toi qui bois! // Julien Lepers s'en va.
 {player_A} et {player_B} sont mariés et prennent le même nombre de gorgées. // {player_A} et {player_B} divorcent.
 {player_A} n'a plus le droit de boire de la main dominante. // {player_A} peut reboire comme il veut.
 {player_A} ne peut plus répondre par oui ou par non. // {player_A} peut reprendre une conversation normale.
