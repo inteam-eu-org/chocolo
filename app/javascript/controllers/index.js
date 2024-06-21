@@ -29,9 +29,7 @@ window.initGame = function () {
     type: 'POST',
     success: function (data) {
       $('#loader').hide();
-      if (data["status"] === "error") {
-        alert(data["message"]);
-      } else if (data["status"] === "success") {
+      if (data["status"] === "success") {
         events = data["events"];
         startGame();
       } else {
@@ -40,7 +38,11 @@ window.initGame = function () {
     },
     error: function (jqXHR, textStatus, errorThrown) {
       $('#loader').hide();
-      alert(textStatus + "\nError: " + errorThrown);
+      if (jqXHR.status === 422) {
+        alert(jqXHR.responseJSON["message"]);
+      } else {
+        alert(textStatus + "\nError: " + errorThrown + "\nPlease contact admin.");
+      }
     }
   });
 }
