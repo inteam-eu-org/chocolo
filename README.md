@@ -1,9 +1,8 @@
 # CHOCOLO
 
 <div align="center">
-  [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
   
-  ![rails workflow](https://github.com/inteam-eu-org/chocolo/actions/workflows/rails.yml/badge.svg)
+  [![](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop) ![rails workflow](https://github.com/inteam-eu-org/chocolo/actions/workflows/rails.yml/badge.svg)
   
   <img src="https://github.com/inteam-eu-org/chocolo/blob/2d1c913ddefe590df7f59759015d59bc0d5ffa5f/app/assets/images/logo.png" width="400">
 </div>
