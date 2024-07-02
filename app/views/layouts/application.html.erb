@@ -59,6 +59,8 @@
   </head>
 
   <body class="position-absolute w-100 h-100 overflow-auto">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <div id="force-landscape">
       <div id="refresh-arrows">
         <div class="refresh-arrows-wrapper">
@@ -73,9 +75,22 @@
       <i class="icon rotate fas fa-star" style="<%= "top: 5%; right: 5%" %>"></i>
       <i class="icon rotate fas fa-star" style="<%= "bottom: 5%; right: 5%" %>"></i>
     </div>
+    <div id="login">
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_url, method: :delete do %>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_url do %>
+          <i class="fa-regular fa-user"></i>
+        <% end %>
+      <% end %>
+    </div>
     <div class="container-fluid h-100">
       <div id="title" class="text-center mt-4">
-        <h1 class="display-4">CHOCOLO</h1>
+        <%= link_to root_url do %>
+          <h1 class="display-4" style="color: $white; text-decoration: none;">CHOCOLO</h1>
+        <% end %>
       </div>
       <%= yield %>
     </div>
@@ -86,7 +101,7 @@
       <button type="button" class="float-end btn-close" aria-label="Close" onclick="$('#app-footer').hide()"></button>  
     </footer>
     
-    <%= render 'install-modal' %>
+    <%= render 'public/home/install-modal' %>
 
   </body>
 </html>

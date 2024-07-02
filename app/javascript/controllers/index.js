@@ -51,6 +51,7 @@ window.startGame = function () {
   // Hide the UI
   $('#setup-container').css('display', 'none');
   $('#title').hide();
+  $('#login').hide();
 
   // Shows the game
   $('#game-container').css('display', 'flex');
@@ -73,6 +74,7 @@ window.finishGame = function () {
   $('#game').css('display', 'none');
   $('#title').show();
   $('#end').css('display', 'flex');
+  $('#login').show();
   var audio = new Audio('https://actions.google.com/sounds/v1/human_voices/human_fart.ogg');
   audio.play();
 }

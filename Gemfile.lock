@@ -81,6 +81,7 @@ GEM
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.3)
@@ -101,19 +102,28 @@ GEM
     concurrent-ruby (1.3.3)
     connection_pool (2.4.1)
     crass (1.0.6)
+    daemons (1.4.1)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    devise (4.9.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise-passwordless (1.0.3)
+      devise
+      globalid
     docile (1.4.0)
     drb (2.2.1)
     erubi (1.13.0)
+    eventmachine (1.2.7)
     execjs (2.9.1)
-    ffi (1.17.0-aarch64-linux-gnu)
-    ffi (1.17.0-arm-linux-gnu)
-    ffi (1.17.0-arm64-darwin)
-    ffi (1.17.0-x86-linux-gnu)
-    ffi (1.17.0-x86_64-darwin)
+    faye-websocket (0.11.3)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1)
     ffi (1.17.0-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -147,11 +157,22 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailcatcher (0.10.0)
+      eventmachine (~> 1.0)
+      faye-websocket (~> 0.11.1)
+      mail (~> 2.3)
+      net-smtp
+      rack (~> 2.2)
+      sinatra (~> 3.2)
+      sqlite3 (~> 1.3)
+      thin (~> 1.8)
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.24.0)
     msgpack (1.7.2)
+    mustermann (3.0.0)
+      ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
     net-imap (0.4.13)
       date
@@ -163,18 +184,9 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.6-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.6-arm-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.6-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.6-x86-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.6-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
     parallel (1.25.1)
     parser (3.3.3.0)
       ast (~> 2.4.1)
@@ -186,14 +198,17 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
-    rack (3.1.3)
-    rack-session (2.0.0)
-      rack (>= 3.0.0)
+    rack (2.2.9)
+    rack-protection (3.2.0)
+      base64 (>= 0.1.0)
+      rack (~> 2.2, >= 2.2.4)
+    rack-session (1.0.2)
+      rack (< 3)
     rack-test (2.1.0)
       rack (>= 1.3)
-    rackup (2.1.0)
-      rack (>= 3)
-      webrick (~> 1.8)
+    rackup (1.0.0)
+      rack (< 3)
+      webrick
     rails (7.1.3.4)
       actioncable (= 7.1.3.4)
       actionmailbox (= 7.1.3.4)
@@ -230,6 +245,9 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.3.0)
       strscan
     rubocop (1.64.1)
@@ -253,6 +271,7 @@ GEM
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -276,6 +295,11 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    sinatra (3.2.0)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.2.0)
+      tilt (~> 2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -283,16 +307,15 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (1.7.3-aarch64-linux)
-    sqlite3 (1.7.3-arm-linux)
-    sqlite3 (1.7.3-arm64-darwin)
-    sqlite3 (1.7.3-x86-linux)
-    sqlite3 (1.7.3-x86_64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.1)
     strscan (3.1.0)
+    thin (1.8.2)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (>= 1, < 3)
     thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -303,6 +326,8 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -318,11 +343,6 @@ GEM
     zeitwerk (2.6.16)
 
 PLATFORMS
-  aarch64-linux
-  arm-linux
-  arm64-darwin
-  x86-linux
-  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
@@ -330,10 +350,13 @@ DEPENDENCIES
   bootstrap
   capybara
   debug
+  devise (~> 4.9)
+  devise-passwordless
   importmap-rails
   jbuilder
   jquery-rails
   json-schema (~> 4.3)
+  mailcatcher (= 0.10.0)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.3)
   rubocop

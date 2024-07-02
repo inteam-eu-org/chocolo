@@ -61,6 +61,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
+  gem 'mailcatcher', '0.10.0'
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
@@ -79,3 +80,6 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'json-schema', '~> 4.3'
 gem 'sassc-rails'
+
+gem 'devise', '~> 4.9'
+gem "devise-passwordless"

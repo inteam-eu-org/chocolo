@@ -17,13 +17,22 @@ $white: #EEF4ED;
     height: 100%;
     background-color: $background;
     z-index: 2;
+    top: 0;
     text-align: center;
+  }
+
+  #login {
+    display: none;
   }
 }
 
 @media screen and (orientation:landscape) {
   #force-landscape {
     display: none;
+  }
+
+  #login {
+    display: block;
   }
 }
 
@@ -131,4 +140,22 @@ footer a {
 #background {
   background: url(asset_path('logo.png')) no-repeat 50% / 50% rgba(0, 0, 0, 0.6);
   background-blend-mode: multiply;
+}
+
+/* Login buttons */
+#login {
+  position: absolute;
+  z-index: 2;
+  top: 2rem;
+  right: 2rem;
+}
+
+#login>a {
+  color: $white;
+  font-size: 2rem;
+}
+
+#title a {
+  color: $white;
+  text-decoration: none;
 }
