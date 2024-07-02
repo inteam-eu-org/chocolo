@@ -30,7 +30,7 @@ bin/rails db:create db:migrate db:seed
 bin/dev
 ```
 
-You can select the `Gameloop test` theme to test the loop. [Update the theme](./db/seeds/inteam.rb) as long as you had new question types or features so this theme shows all possible behaviors of the app.
+You can select the `Gameloop test` theme to test the loop. [Update the theme](./db/seeds/inteam.rb) as long as you add new question types or features so this theme shows all possible behaviors of the app.
 
 **N.B.:** You can connect to the dev server using your phone to see if the app renders properly. Look into the server logs:
 
@@ -80,7 +80,7 @@ Run your tests with:
 rails test:all
 ```
 
-It will generate a code coverage report at `./coverge/index.html`. Note that your branch won't be able to be merged if tests cover less than 5% of the codebase.
+It will generate a code coverage report at `./coverge/index.html`. Note that your branch won't be able to be merged if tests cover less than 75% of the codebase.
 
 You should also use rubocop to format your code:
 
